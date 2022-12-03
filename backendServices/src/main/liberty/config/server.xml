@@ -1,0 +1,33 @@
+<server description="Sample Liberty server">
+
+    <featureManager>
+        <feature>restfulWS-3.0</feature>
+        <feature>jsonb-2.0</feature>
+        <feature>jsonp-2.0</feature>
+        <feature>cdi-3.0</feature>
+        <feature>persistence-3.0</feature>
+    </featureManager>
+
+    <variable name="default.http.port" defaultValue="5050" />
+    <variable name="default.https.port" defaultValue="5051" />
+
+    <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
+                  id="defaultHttpEndpoint" host="*" />
+
+<!--    <application location="backendServices.war" type="war" context-root="/"></application>-->
+    <webApplication location="backendServices.war" contextRoot="backend">
+
+    </webApplication>
+
+    <library id="PostgresLib">
+        <fileset dir="${shared.resource.dir}/" includes="postgresql*.jar" />
+    </library>
+
+    <!-- Datasource Configuration -->
+    <dataSource id="eventjpadatasource" jndiName="jdbc/eventjpadatasource">
+        <jdbcDriver libraryRef="PostgresLib" />
+        <properties.postgresql databaseName="OpenLiberty" createDatabase="create" />
+    </dataSource>
+
+
+</server>

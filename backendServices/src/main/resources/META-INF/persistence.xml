@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2"
+             xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence
+                        http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+
+    <persistence-unit name="jpa-unit" transaction-type="JTA">
+
+        <jta-data-source>jdbc/eventjpadatasource</jta-data-source>
+
+        <properties>
+            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+            <property name="jakarta.persistence.schema-generation.scripts.action" value="create"/>
+            <property name="jakarta.persistence.schema-generation.scripts.create-target" value="createDDL.ddl"/>
+
+            <property name = "jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name = "jakarta.persistence.jdbc.url" value="jdbc:postgresql://localhost/OpenLiberty"/>
+            <property name = "jakarta.persistence.jdbc.user" value="postgres"/>
+            <property name = "jakarta.persistence.jdbc.password" value="postgres"/>
+        </properties>
+
+        <!--  some commented properties from a previous persistence.xml file
+                <properties>
+
+            <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+
+            <property name = "hibernate.show_sql" value = "true" />
+            <property name = "hibernate.format_sql" value="true"/>
+            <property name = "hibernate.use_sql_comments" value="true"/>
+        </properties>
+
+        -->
+
+    </persistence-unit>
+
+</persistence>
