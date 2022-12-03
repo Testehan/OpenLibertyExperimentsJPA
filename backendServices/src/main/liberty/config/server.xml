@@ -14,10 +14,7 @@
     <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
                   id="defaultHttpEndpoint" host="*" />
 
-<!--    <application location="backendServices.war" type="war" context-root="/"></application>-->
-    <webApplication location="backendServices.war" contextRoot="backend">
-
-    </webApplication>
+    <application location="backendServices.war" type="war" context-root="backend"></application>
 
     <library id="PostgresLib">
         <fileset dir="${shared.resource.dir}/" includes="postgresql*.jar" />
@@ -26,7 +23,7 @@
     <!-- Datasource Configuration -->
     <dataSource id="eventjpadatasource" jndiName="jdbc/eventjpadatasource">
         <jdbcDriver libraryRef="PostgresLib" />
-        <properties.postgresql databaseName="OpenLiberty" createDatabase="create" />
+        <properties.postgresql databaseName="OpenLiberty" />
     </dataSource>
 
 
