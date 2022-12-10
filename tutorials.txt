@@ -1,0 +1,30 @@
+Run the 2 runners, backend and frontend to start the app. (obviously you should have the configured DB running as
+well.)
+
+http://localhost:9090/eventmanager.jsf          Client app in the UI
+http://localhost:5050/backend/event             backend resource URL
+
+Concerning backend :
+
+    https://stackoverflow.com/questions/11552248/when-to-use-queryparam-vs-pathparam
+    https://openliberty.io/docs/latest/reference/feature/persistenceContainer-3.0.html
+        there are some steps about how to configure hibernate in an open liberty server
+
+    https://hibernate.org/orm/releases/
+        I used hibernate 6.1 because with 5.6 it did not work.
+
+    https://www.harshajayamanna.com/2020/08/openliberty-jakartaee8-and-hibernate.html
+        (sort of helped...he configured persistence container 2.2..)
+
+Concerning frontend :
+
+    https://stackoverflow.com/questions/2095397/what-is-the-difference-between-jsf-servlet-and-jsp
+
+        As being a MVC (Model-View-Controller) framework, JSF provides the FacesServlet as the sole request-response
+        Controller. (Dan: see the web.xml which is configured to use the FacesServlet : jakarta.faces.webapp.FacesServlet)
+
+        It takes all the standard and tedious HTTP request/response work from your hands, such as gathering user
+        input, validating/converting them, putting them in model objects, invoking actions and rendering the response. This
+        way you end up with basically a JSP or Facelets (XHTML) page for View and a JavaBean class as Model.
+        The JSF components are used to bind the view with the model (such as your ASP.NET web control does) and the
+        FacesServlet uses the JSF component tree to do all the work.
