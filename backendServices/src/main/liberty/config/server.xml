@@ -5,7 +5,9 @@
         <feature>jsonb-2.0</feature>
         <feature>jsonp-2.0</feature>
         <feature>cdi-3.0</feature>
+
         <feature>persistence-3.0</feature>
+        <feature>bells-1.0</feature>
     </featureManager>
 
     <variable name="default.http.port" defaultValue="5050" />
@@ -14,11 +16,18 @@
     <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
                   id="defaultHttpEndpoint" host="*" />
 
-    <application location="backendServices.war" type="war" context-root="backend"></application>
-
     <library id="PostgresLib">
         <fileset dir="${shared.resource.dir}/" includes="postgresql*.jar" />
     </library>
+    <library id="HibernateLib">
+        <fileset dir="${shared.resource.dir}" includes="hibernate*.jar"/>
+    </library>
+
+    <bell libraryRef="HibernateLib"/>
+
+    <application location="backendServices.war" type="war" context-root="backend">
+        <classloader commonLibraryRef="HibernateLib"/>
+    </application>
 
     <!-- Datasource Configuration -->
     <dataSource id="eventjpadatasource" jndiName="jdbc/eventjpadatasource">
